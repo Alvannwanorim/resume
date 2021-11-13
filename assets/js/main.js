@@ -121,3 +121,25 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
+
+// ============REDUCE THE SIZE ON A4============
+function scaleCv() {
+  document.body.classList.add("scale-cv");
+}
+
+// ============REMOVE THE SIZE WHEN CV IS DOWNLOADED============
+function removeScaleCv() {
+  document.body.classList.remove("scale-cv");
+}
+let areaCv = document.getElementById("area-cv");
+let resumeButton = document.getElementById("resume-button");
+
+function generateResume() {
+  html2pdf(areaCv);
+}
+resumeButton.addEventListener("click", () => {
+  scaleCv();
+  generateResume();
+
+  setTimeout(removeScaleCv, 500);
+});

@@ -87,17 +87,17 @@ img {
 /* ===========CLASS CSS=========*/
 
 .section {
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .section-title {
-  font-size: var(--h2-font-size);
+  font-size: var(--h3-font-size);
   color: var(--title-color);
   font-weight: var(--font-semi-mediem);
   text-transform: uppercase;
   letter-spacing: 0.35rem;
   text-align: center;
-  margin-bottom: var(--mb-3);
+  margin-bottom: var(--mb-1);
 }
 /* ==============LAYOUT========== */
 .bd-container {
@@ -261,25 +261,27 @@ img {
 }
 .profile__description p {
   text-align: justify;
+  font-size: 1.2rem;
 }
 
 /* ===========EDUACTION & EXPERINCE========= */
-
+.experience__container,
 .education__container {
+  padding: 0 1.5rem;
   position: relative;
 }
 .education__content,
 .experience__content {
   display: flex;
 }
-
+.experience__container::before,
 .education__container::before {
   content: "";
   position: absolute;
   height: 100%;
   width: 1px;
   top: 0;
-  left: 2px;
+  left: 0;
   background-color: var(--title-color);
 }
 
@@ -288,7 +290,7 @@ img {
   padding-right: 1rem;
 }
 
-.education__rounder,
+/* .education__rounder,
 .experience__rounder {
   position: relative;
   display: block;
@@ -297,16 +299,16 @@ img {
   border-radius: 50%;
   background-color: var(--text-color-light);
   margin-top: 0.25rem;
-}
+} */
 
-.education__line,
+/* .education__line,
 .experience__line {
   display: block;
   width: 2px;
   height: 110%;
   background-color: var(--text-color-light);
   transform: translate(7px, 0);
-}
+} */
 
 .education__data,
 .experience__data {
@@ -318,13 +320,24 @@ img {
   position: relative;
   font-size: var(--h3-font-size);
 }
-
+.experience__title::before,
 .education__title::before {
   content: "";
   position: absolute;
   width: 11px;
   height: 11px;
-  left: -19px;
+  left: -29px;
+  top: 10px;
+  border-radius: 50%;
+  background-color: var(--title-color);
+}
+
+.experience__title::before {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  left: -45px;
   top: 10px;
   border-radius: 50%;
   background-color: var(--title-color);
@@ -341,9 +354,11 @@ img {
 
 /* ===============SKILLS AND LANGUAGES========= */
 
-.skills__content,
-.languages_content {
-  grid-template-columns: repeat(2, 1fr);
+.skills__content .skills_data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .skills__content,
@@ -364,7 +379,7 @@ img {
   height: 5px;
   background-color: var(--text-color);
   border-radius: 50%;
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
 }
 
 /* ==========CERTIFICATES================= */
@@ -376,9 +391,9 @@ img {
 
 /* ================REFERENCES=================== */
 
-.references__content {
+/* .references__content {
   gap: 0.25rem;
-}
+} */
 
 .references__subtitle {
   color: var(--text-color-light);
@@ -455,6 +470,95 @@ body.dark-theme {
 .change-theme:hover {
   color: var(--title-color);
 }
+
+/* ===============GENERATE PDF BUTTON============== */
+.generate-pdf {
+  display: none;
+  position: absolute;
+  top: 2.2rem;
+  left: 0;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.generate-pdf:hover {
+  color: var(--title-color);
+}
+
+/* =============Font size varaible to scale cv */
+body.scale-cv {
+  --h1-font-size: 0.938rem;
+  --h2-font-size: 0.938rem;
+  --h3-font-size: 0.875rem;
+  --normal-font-size: 0.813rem;
+  --small-font-size: 0.75rem;
+  --smaller-font-size: 0.688rem;
+}
+
+.scale-cv .change-theme,
+.scale-cv .generate-pdf {
+  display: none;
+}
+
+.scale-cv .bd-container {
+  max-width: 595px;
+}
+
+.scale-cv .section {
+  padding: 1.5rem 0 0.8rem;
+}
+
+.scale-cv .section-title {
+  margin-bottom: 0.75rem;
+}
+.scale-cv.resume__left,
+.scale-cv.resume__right {
+  padding: 0 1rem;
+}
+.scale-cv .home__img {
+  width: 90px;
+  height: 90px;
+}
+.scale-cv .home__container {
+  gap: 1.5rem;
+}
+
+.scale-cv .home__data {
+  gap: 0.25rem;
+}
+
+.scale-cv .home__address,
+.scale-cv .social__container {
+  gap: 0.75rem;
+}
+.scale-cv .home__icon,
+.scale-cv .social__icon,
+.scale-cv .interests__icon {
+  font-size: 1rem;
+}
+.scale-cv .education__container,
+.scale-cv .experience__container,
+.scale-cv .certificate__container {
+  gap: 1rem;
+}
+
+.scale-cv .education__time,
+.scale-cv .experience__time {
+  padding-right: 0.5rem;
+}
+
+.scale-cv .education__data,
+.scale-cv .experience__data {
+  gap: 0.25rem;
+}
+.scale-cv .skills__name {
+  margin-bottom: var(--mb-1);
+}
+
+.scale-cv .interests__container {
+  column-gap: 2.5rem;
+}
 /* ===========MEDIA QUERY======= */
 @media screen and (max-width: 968px) {
   .nav_menu {
@@ -501,6 +605,7 @@ body.dark-theme {
   }
 
   .resume__left {
+    position: relative;
     background-color: var(--container-color-alt);
   }
 
@@ -512,6 +617,10 @@ body.dark-theme {
   .section-title,
   .profile__description {
     text-align: initial;
+  }
+
+  .generate-pdf {
+    display: inline-block;
   }
 
   .home__container {
@@ -529,7 +638,7 @@ body.dark-theme {
     grid-template-columns: repeat(3, max-content);
     gap: 3.5rem;
   }
-  .interescontts__ent {
+  .interes__content {
     grid-template-columns: repeat(4, max-content);
     gap: 3.5rem;
   }
